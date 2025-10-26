@@ -1,5 +1,8 @@
 package racingcar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputHandler {
     private static boolean isEmpty(String name) { // 이름 공백 검사
         return name == null || name.isBlank();
@@ -28,5 +31,22 @@ public class InputHandler {
         if (containsNonAlphabet(name)) {
             throw new IllegalArgumentException("Car name is only permitted alphabet.");
         }
+    }
+
+    public static List<String> parseCarNames(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("Input is empty or blank input");
+        }
+
+        String[] names = input.split(","); // ","로 분리
+        List<String> carNames = new ArrayList<>();
+
+        for (String name : names) {
+            String trimmedName = name.trim(); // 추가: 앞뒤 공백 제거
+            InputHandler.validateCarName(trimmedName);
+            carNames.add(trimmedName);
+        }
+
+        return carNames;
     }
 }
