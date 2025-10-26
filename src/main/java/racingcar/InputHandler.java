@@ -49,4 +49,24 @@ public class InputHandler {
 
         return carNames;
     }
+
+    public static int getTryCount(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("Count blank error");
+        }
+
+        int tryCount;
+        // 문자열이 숫자인지 확인
+        try {
+            tryCount = Integer.parseInt(input.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Count input must be number");
+        }
+        // 0 이상의 정수인지 검증
+        if (tryCount < 0) {
+            throw new IllegalArgumentException("Count input must be over 0");
+        }
+
+        return tryCount;
+    }
 }
