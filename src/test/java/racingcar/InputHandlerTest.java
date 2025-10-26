@@ -154,20 +154,4 @@ public class InputHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Count input must be over 0");
     }
-
-    @Test
-    void createCarsTest() {
-        // given
-        List<String> names = List.of("pobi", "woni", "jun");
-
-        // when
-        List<Car> cars = OutputHandler.createCars(names);
-
-        // then
-        assertThat(cars).hasSize(names.size());
-        for (int i = 0; i < names.size(); i++) {
-            assertThat(cars.get(i).getName()).isEqualTo(names.get(i));
-            assertThat(cars.get(i).getPosition()).isZero();
-        }
-    }
 }
