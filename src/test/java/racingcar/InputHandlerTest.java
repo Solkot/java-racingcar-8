@@ -2,8 +2,9 @@ package racingcar;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class InputHandlerTest {
     @Test
@@ -58,5 +59,47 @@ public class InputHandlerTest {
 
         assertThatCode(() -> InputHandler.validateCarName("WONI"))
                 .doesNotThrowAnyException();
+    }
+
+    // parseCarNames
+
+    @Test
+    void parseCarNamesValidInput() {
+        // given
+        String input = "pobi,woni,jun";
+
+        // when
+        List<String> result = InputHandler.parseCarNames(input);
+
+        // then
+        assertThat(result)
+                .containsExactly("pobi", "woni", "jun")
+                .hasSize(3);
+    }
+
+    @Test
+    void parseCarNamesTestTrim() {
+        // given
+        String input = " pobi , woni , jun ";
+
+        // when
+        List<String> result = InputHandler.parseCarNames(input);
+
+        // then
+        assertThat(result)
+                .containsExactly("pobi", "woni", "jun");
+    }
+
+    @Test
+    void parseCarNamesNullInput() {
+        assertThatThrownBy(() -> InputHandler.parseCarNames(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Input is empty or blank input");
+    }
+    @Test
+    void parseCarNamesBlankInput() {
+        assertThatThrownBy(() -> InputHandler.parseCarNames("   "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Input is empty or blank input");
     }
 }
