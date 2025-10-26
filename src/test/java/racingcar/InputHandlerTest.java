@@ -62,7 +62,6 @@ public class InputHandlerTest {
     }
 
     // parseCarNames
-
     @Test
     void parseCarNamesValidInput() {
         // given
@@ -94,12 +93,65 @@ public class InputHandlerTest {
     void parseCarNamesNullInput() {
         assertThatThrownBy(() -> InputHandler.parseCarNames(null))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Input is empty or blank input");
+                .hasMessage("Input is empty or blank input");
     }
     @Test
     void parseCarNamesBlankInput() {
         assertThatThrownBy(() -> InputHandler.parseCarNames("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Input is empty or blank input");
+                .hasMessage("Input is empty or blank input");
+    }
+
+    // getTryCount
+    @Test
+    void getTryCountValidInput() {
+        // given
+        String input = "5";
+
+        // when
+        int result = InputHandler.getTryCount(input);
+
+        // then
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void getTryCountZero() { // 이후 0일때는 따로 결과를 바로 표시하도록 진행
+        // given
+        String input = "0";
+
+        // when
+        int result = InputHandler.getTryCount(input);
+
+        // then
+        assertThat(result).isZero();
+    }
+
+    @Test
+    void getTryCountNullInput() {
+        assertThatThrownBy(() -> InputHandler.getTryCount(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Count blank error");
+    }
+
+    @Test
+    void getTryCountBlankInput() {
+        assertThatThrownBy(() -> InputHandler.getTryCount("   "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Count blank error");
+    }
+
+    @Test
+    void getTryCountNonNumericInput() {
+        assertThatThrownBy(() -> InputHandler.getTryCount("abc"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Count input must be number");
+    }
+
+    @Test
+    void getTryCountNegativeNumber() {
+        assertThatThrownBy(() -> InputHandler.getTryCount("-3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Count input must be over 0");
     }
 }
