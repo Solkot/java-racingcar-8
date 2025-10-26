@@ -13,4 +13,8 @@ public class OutputHandler {
         }
         return cars;
     }
+
+    public static int getRandomNumber() {
+        return Randoms.pickNumberInRange(0, 9);
+    }
 }

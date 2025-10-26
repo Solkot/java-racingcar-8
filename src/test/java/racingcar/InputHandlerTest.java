@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class gitInputHandlerTest {
+public class InputHandlerTest {
     @Test
     void validateNullName() {
         assertThatThrownBy(() -> InputHandler.validateCarName(null))
