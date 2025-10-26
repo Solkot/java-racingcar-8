@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutputHandler {
+    private static final int Standard = 4;
+
     public static List<Car> createCars(List<String> names) {
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
@@ -16,5 +18,9 @@ public class OutputHandler {
 
     public static int getRandomNumber() {
         return Randoms.pickNumberInRange(0, 9);
+    }
+
+    public static boolean canMove() {
+        return getRandomNumber() >= Standard;
     }
 }
