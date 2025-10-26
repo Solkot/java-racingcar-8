@@ -23,4 +23,10 @@ public class OutputHandler {
     public static boolean canMove() {
         return getRandomNumber() >= Standard;
     }
+
+    public static void moveCar(Car car) {
+        if (canMove()) {
+            car.increasePosition();
+        }
+    }
 }
