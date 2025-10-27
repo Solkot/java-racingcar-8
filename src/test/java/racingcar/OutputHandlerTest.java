@@ -113,4 +113,25 @@ public class OutputHandlerTest {
 
         assertThat(results).hasSize(tryCount);
     }
+
+    @Test
+    void testGetWinnersSingle() {
+        car1.increasePosition();
+        car1.increasePosition();
+        car2.increasePosition();
+
+        String winner = OutputHandler.getWinners(cars);
+
+        assertThat(winner).isEqualTo("pobi");
+    }
+
+    @Test
+    void testGetWinnersMultiple() {
+        car1.increasePosition();
+        car2.increasePosition();
+
+        String winner = OutputHandler.getWinners(cars);
+
+        assertThat(winner).isEqualTo("pobi, jun");
+    }
 }

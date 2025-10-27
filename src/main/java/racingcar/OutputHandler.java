@@ -59,5 +59,6 @@ public class OutputHandler {
                 .filter(car -> car.getPosition() == max)
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
+        //한 명, 여러 명 상관 없이 훑고 ", " 추가
     }
 }
