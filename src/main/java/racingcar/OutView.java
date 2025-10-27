@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutView {
     private static final String EXECUTION_RESULT_MESSAGE = "\n실행 결과";
@@ -21,5 +22,12 @@ public class OutView {
             System.out.println(formatCarProgress(car));
         }
         System.out.println();
+    }
+
+    public static void printWinners(List<Car> winners) {
+        String winnerNames = winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+        System.out.println(WINNER_MESSAGE + winnerNames);
     }
 }
