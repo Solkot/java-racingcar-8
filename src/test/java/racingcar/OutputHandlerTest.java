@@ -48,7 +48,7 @@ public class OutputHandlerTest {
             this.moveDecision = moveDecision;
         }
 
-        public  boolean canMove() {
+        public boolean canMove() {
             return moveDecision;
         }
 

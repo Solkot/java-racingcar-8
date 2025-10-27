@@ -106,6 +106,7 @@ public class InputHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Input is empty or blank input");
     }
+
     @Test
     @DisplayName("parseCarNames 입력이 공백 문자열 Test")
     void parseCarNamesBlankInput() {

@@ -18,6 +18,7 @@ public class OutViewTest {
         output = new ByteArrayOutputStream(); //System.out.println()은 콘솔로 바로 출력돼서 테스트 코드에서 내용을 읽을 수 없는 내용을 메모리 상에서 읽고 저장을 위해
         System.setOut(new PrintStream(output)); //assertThat을 통해 출력값을 검증하기 위한 단계
     }
+
     @Test
     @DisplayName("printStartMessage, 기본 출력 메세지 Test")
     void printStartMessageTest() {
