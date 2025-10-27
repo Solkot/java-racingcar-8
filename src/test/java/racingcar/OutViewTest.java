@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -18,6 +19,7 @@ public class OutViewTest {
         System.setOut(new PrintStream(output)); //assertThat을 통해 출력값을 검증하기 위한 단계
     }
     @Test
+    @DisplayName("printStartMessage, 기본 출력 메세지 Test")
     void printStartMessageTest() {
         OutView.printStartMessage();
 
@@ -26,6 +28,7 @@ public class OutViewTest {
     }
 
     @Test
+    @DisplayName("printRaceResult, 참가자 이동 출력 확인 Test")
     void printRaceResultTest() {
         Car pobi = new Car("pobi");
         Car jun = new Car("jun");
@@ -43,6 +46,7 @@ public class OutViewTest {
     }
 
     @Test
+    @DisplayName("printWinners, 단독 우승자 출력 Test")
     void printWinnersSingle() {
         Car pobi = new Car("pobi");
 
@@ -53,6 +57,7 @@ public class OutViewTest {
     }
 
     @Test
+    @DisplayName("printWinners, 다중 우승자 출력 Test")
     void printWinnersMulti() {
         Car pobi = new Car("pobi");
         Car jun = new Car("jun");
