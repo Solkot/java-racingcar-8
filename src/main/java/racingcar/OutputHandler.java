@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputHandler {
     private static final int Standard = 4;
@@ -28,5 +29,23 @@ public class OutputHandler {
         if (canMove()) {
             car.increasePosition();
         }
+    }
+
+    private static String getCurrentRaceState(List<Car> cars) {
+        return cars.stream()
+                .map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
+                .collect(Collectors.joining("\n"));
+    }
+
+    public static List<String> runRace(List<Car> cars, int tryCount) {
+        List<String> raceResults = new ArrayList<>();
+
+        for (int i = 0; i < tryCount; i++) {
+            for (Car car : cars) {
+                moveCar(car);
+            }
+            raceResults.add(getCurrentRaceState(cars));
+        }
+        return raceResults;
     }
 }
