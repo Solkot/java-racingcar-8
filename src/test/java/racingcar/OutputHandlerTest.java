@@ -90,6 +90,7 @@ public class OutputHandlerTest {
 
     @Test
     void testGetCurrentRaceState() {
+        //test를 위해 GetCurrentRaceState를 public으로 열러 놓음 -> 이후 방법 찾아보기
         car1.increasePosition();
         car1.increasePosition();
         car2.increasePosition();
@@ -101,6 +102,15 @@ public class OutputHandlerTest {
         String result = getCurrentRaceState(cars);
 
         assertThat(result).isEqualTo(expected);
-        //test를 위해 GetCurrentRaceState를 public으로 열러 놓음 -> 이후 방법 찾아보기
+    }
+
+    @Test
+    void testRunRaceResultSize() {
+        // Random 요소가 있어 정확한 결과는 예측이 불가능, 그렇기에 시도 횟수만큼의 문자열이 저장되는지 확인
+        int tryCount = 5;
+
+        List<String> results = OutputHandler.runRace(cars, tryCount);
+
+        assertThat(results).hasSize(tryCount);
     }
 }
