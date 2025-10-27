@@ -31,7 +31,7 @@ public class OutputHandler {
         }
     }
 
-    private static String getCurrentRaceState(List<Car> cars) {
+    public static String getCurrentRaceState(List<Car> cars) {
         return cars.stream()
                 .map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
                 .collect(Collectors.joining("\n"));

@@ -1,10 +1,13 @@
 package racingcar;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static racingcar.OutputHandler.getCurrentRaceState;
 
 public class OutputHandlerTest {
     @Test
@@ -71,5 +74,33 @@ public class OutputHandlerTest {
         race.moveCar(car);
 
         assertThat(car.getPosition()).isZero();
+    }
+
+    //GetCurrentRaceState
+    private Car car1;
+    private Car car2;
+    private List<Car> cars;
+
+    @BeforeEach
+    void setUp() {
+        car1 = new Car("pobi");
+        car2 = new Car("jun");
+        cars = Arrays.asList(car1, car2);
+    }
+
+    @Test
+    void testGetCurrentRaceState() {
+        car1.increasePosition();
+        car1.increasePosition();
+        car2.increasePosition();
+
+        String expected =
+                "pobi : --\n" +
+                        "jun : -";
+
+        String result = getCurrentRaceState(cars);
+
+        assertThat(result).isEqualTo(expected);
+        //test를 위해 GetCurrentRaceState를 public으로 열러 놓음 -> 이후 방법 찾아보기
     }
 }
