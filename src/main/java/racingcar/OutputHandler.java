@@ -48,4 +48,16 @@ public class OutputHandler {
         }
         return raceResults;
     }
+
+    public static String getWinners(List<Car> cars) {
+        int max = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0); // null 방지 orElse
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == max)
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+    }
 }
