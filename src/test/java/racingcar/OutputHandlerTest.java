@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import static racingcar.OutputHandler.getCurrentRaceState;
 
 public class OutputHandlerTest {
     @Test
+    @DisplayName("createCars, 이름 리스트를 Car 객체 리스트로 변환 Test")
     void createCarsTest() {
         // given
         List<String> names = List.of("pobi", "woni", "jun");
@@ -27,6 +29,7 @@ public class OutputHandlerTest {
     }
 
     @Test
+    @DisplayName("getRandomNumber, 항상 0~9 범위의 정수를 반환 Test")
     void getRandomNumber() {
         for (int i = 0; i < 100; i++) {
             int random = OutputHandler.getRandomNumber();
@@ -57,6 +60,7 @@ public class OutputHandlerTest {
     }
 
     @Test
+    @DisplayName("moveCar, canMove()가 true일 때 위치 1 증가")
     void moveCarTestTrue() {
         Car car = new Car("pobi");
         TestMove race = new TestMove(true);
@@ -67,6 +71,7 @@ public class OutputHandlerTest {
     }
 
     @Test
+    @DisplayName("moveCar, canMove()가 false일 때 위치 변화 없음")
     void moveCarTestFalse() {
         Car car = new Car("pobi");
         TestMove race = new TestMove(false);
@@ -89,6 +94,7 @@ public class OutputHandlerTest {
     }
 
     @Test
+    @DisplayName("getCurrentRaceState, 참가자 이동이 정상인지 Test")
     void testGetCurrentRaceState() {
         //test를 위해 GetCurrentRaceState를 public으로 열러 놓음 -> 이후 방법 찾아보기
         car1.increasePosition();
@@ -105,6 +111,7 @@ public class OutputHandlerTest {
     }
 
     @Test
+    @DisplayName("RunRaceResultSize, 시도 횟수만큼의 문자열이 저장되는지 Test")
     void testRunRaceResultSize() {
         // Random 요소가 있어 정확한 결과는 예측이 불가능, 그렇기에 시도 횟수만큼의 문자열이 저장되는지 확인
         int tryCount = 5;
@@ -115,6 +122,7 @@ public class OutputHandlerTest {
     }
 
     @Test
+    @DisplayName("getWinners, 우승자 1명일때 Test")
     void testGetWinnersSingle() {
         car1.increasePosition();
         car1.increasePosition();
@@ -127,6 +135,7 @@ public class OutputHandlerTest {
     }
 
     @Test
+    @DisplayName("getWinners, 우승자 여러 명일때 Test")
     void testGetWinnersMultiple() {
         car1.increasePosition();
         car2.increasePosition();
