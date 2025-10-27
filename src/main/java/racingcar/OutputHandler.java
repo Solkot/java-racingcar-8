@@ -49,16 +49,14 @@ public class OutputHandler {
         return raceResults;
     }
 
-    public static String getWinners(List<Car> cars) {
+    public static List<Car> getWinners(List<Car> cars) {
         int max = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0); // null 방지 orElse
-
+                .orElse(0);
         return cars.stream()
                 .filter(car -> car.getPosition() == max)
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.toList());
         //한 명, 여러 명 상관 없이 훑고 ", " 추가
     }
 }

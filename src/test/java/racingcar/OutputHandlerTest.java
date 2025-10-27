@@ -120,9 +120,10 @@ public class OutputHandlerTest {
         car1.increasePosition();
         car2.increasePosition();
 
-        String winner = OutputHandler.getWinners(cars);
+        List<Car> winners = OutputHandler.getWinners(cars);
 
-        assertThat(winner).isEqualTo("pobi");
+        assertThat(winners).hasSize(1);
+        assertThat(winners.get(0).getName()).isEqualTo("pobi");
     }
 
     @Test
@@ -130,8 +131,10 @@ public class OutputHandlerTest {
         car1.increasePosition();
         car2.increasePosition();
 
-        String winner = OutputHandler.getWinners(cars);
+        List<Car> winners = OutputHandler.getWinners(cars);
 
-        assertThat(winner).isEqualTo("pobi, jun");
+        assertThat(winners).hasSize(2);
+        assertThat(winners).extracting(Car::getName)
+                .containsExactlyInAnyOrder("pobi", "jun");
     }
 }
