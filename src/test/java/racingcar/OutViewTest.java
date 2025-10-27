@@ -41,4 +41,25 @@ public class OutViewTest {
         assertThat(printed).contains("pobi : --");
         assertThat(printed).contains("jun : -");
     }
+
+    @Test
+    void printWinnersSingle() {
+        Car pobi = new Car("pobi");
+
+        OutView.printWinners(List.of(pobi));
+
+        assertThat(output.toString().trim())
+                .isEqualTo("최종 우승자 : pobi");
+    }
+
+    @Test
+    void printWinnersMulti() {
+        Car pobi = new Car("pobi");
+        Car jun = new Car("jun");
+
+        OutView.printWinners(List.of(pobi, jun));
+
+        assertThat(output.toString().trim())
+                .isEqualTo("최종 우승자 : pobi, jun");
+    }
 }
